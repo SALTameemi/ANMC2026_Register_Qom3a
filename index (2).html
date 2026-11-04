@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qom'a — Nurses Participation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+:root{--maroon:#7a1530;--maroon2:#9a2240;--teal:#2d5f54;--gold:#c98a2a;--ink:#2a2018;--cream:#f4ecdd;--line:#e3d6bf;--muted:#8a7a63;--red:#c0392b;--green:#2f8f1f}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Fredoka",system-ui,Arial,sans-serif;background:var(--cream);color:var(--ink)}
+.wrap{max-width:620px;margin:0 auto;padding:0 16px 48px}
+.hero{background:var(--maroon);color:#f7ead0;text-align:center;padding:26px 18px 22px;border-radius:0 0 22px 22px}
+.hero .ksw{font-size:12.5px;letter-spacing:2px;text-transform:uppercase;opacity:.85}
+.hero h1{margin:6px 0 2px;font-size:38px;font-weight:700;letter-spacing:.5px}
+.hero h1 span{font-weight:500;opacity:.9}
+.hero .ms{font-size:14px;opacity:.92;margin-top:4px}
+.hero .gwr{display:inline-block;margin-top:12px;border:1.5px solid #e9b949;color:#f6d998;border-radius:999px;padding:5px 14px;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+.panel{background:#fff;border:2px solid var(--line);border-radius:22px;padding:22px;margin:18px 0;box-shadow:0 10px 26px rgba(90,40,20,.06)}
+.panel h2{margin:0 0 4px;font-size:21px;color:var(--maroon);font-weight:600}
+.panel .sub{margin:0 0 14px;font-size:13.5px;color:var(--muted);line-height:1.5}
+.freepill{display:inline-block;background:#eef5ec;color:var(--green);border:1px solid #cfe6c7;border-radius:999px;padding:3px 12px;font-size:12.5px;font-weight:600}
+label{display:block;font-size:13px;font-weight:600;color:#5c4a33;margin:12px 0 5px}
+input,select{width:100%;padding:13px 14px;border:2px solid var(--line);border-radius:14px;font-size:16px;background:#fff;color:var(--ink);font-family:inherit;font-weight:500}
+input:focus,select:focus{outline:none;border-color:var(--maroon2)}
+.two{display:flex;gap:10px}.two>div{flex:1}
+.req{color:var(--red)}
+.go{display:block;width:100%;margin-top:18px;background:var(--maroon);color:#fff;border:none;border-radius:16px;padding:16px;font-size:17px;font-weight:600;cursor:pointer;font-family:inherit;box-shadow:0 6px 16px rgba(122,21,48,.22)}
+.go:disabled{opacity:.5}
+.msg{margin-top:12px;font-size:14px;font-weight:600;text-align:center;min-height:18px}
+.msg.err{color:var(--red)}.msg.ok{color:var(--green)}
+.done{background:#fff;border:2px solid var(--green);border-radius:22px;padding:28px 22px;text-align:center;margin:18px 0}
+.done .big{font-size:52px}.done h3{margin:8px 0 4px;color:var(--green);font-size:22px}
+.done .idbox{display:inline-block;background:#eef5ec;border:1px solid #cfe6c7;border-radius:12px;padding:10px 16px;margin-top:8px;font-weight:700;color:var(--maroon)}
+.done p{color:#6b5d4a;font-size:14px}
+.foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:22px}
+.foot a{color:var(--teal);text-decoration:none}
+/* admin */
+.kpi{display:flex;gap:10px;margin:4px 0 14px}
+.kpi .box{flex:1;background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px;text-align:center}
+.kpi .n{font-size:30px;font-weight:700;color:var(--maroon)}.kpi .l{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:10px;margin-bottom:12px}
+.btn{flex:1;border:none;border-radius:14px;padding:13px;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer}
+.btn.x{background:var(--green);color:#fff}.btn.r{background:#eee6d6;color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:14px;overflow:hidden}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line)}
+th{background:#f3ead9;color:var(--maroon);font-weight:600;font-size:12px}
+tr:last-child td{border-bottom:none}
+.gate input{margin-bottom:10px}
+.linktiny{text-align:center;margin-top:10px;font-size:12.5px}
+.linktiny a{color:var(--muted);text-decoration:none}
+</style></head><body>
+
+<div class="hero">
+  <div class="ksw">Qatar Sustainability Week 2026</div>
+  <h1>Qom'a <span>· قُمّعة</span></h1>
+  <div class="ms">Mathaf: Arab Museum of Modern Art · متحف قطر</div>
+  <div class="gwr">Guinness World Records&trade; Attempt</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ PUBLIC REGISTRATION ============ -->
+  <div id="screen-form">
+    <div class="panel" id="formPanel">
+      <h2>Nurses Participation · مشاركة التمريض</h2>
+      <span class="freepill">Free · مجاني</span>
+      <p class="sub" style="margin-top:12px">Join Qom'a — a community papier-mâché sculpture for a Guinness World Record. Mathaf, Sat–Thu until 19 Nov 2026, 9:00 AM–5:00 PM. Register below to take part.<br>سجّل اسمك للمشاركة.</p>
+
+      <label>Full name · الاسم الكامل <span class="req">*</span></label><input id="first" autocomplete="name">
+      <label>Position / Role · الوظيفة <span class="req">*</span></label><input id="pos">
+      <label>Hospital · المستشفى <span class="req">*</span></label><input id="hospital">
+      <label>Email · البريد <span class="req">*</span></label><input id="email" type="email" autocomplete="email">
+      <label>Mobile · الجوال (اختياري)</label><input id="mobile" inputmode="tel" autocomplete="tel">
+
+      <button class="go" id="go">Register · سجّل</button>
+      <div class="msg" id="msg"></div>
+    </div>
+    <div id="donePanel"></div>
+    <div class="linktiny"><a href="#team">🔒 Team access</a></div>
+  </div>
+
+  <!-- ============ TEAM / EXPORT ============ -->
+  <div id="screen-team" style="display:none">
+    <div class="panel gate" id="gatePanel">
+      <h2>Team access · دخول الفريق</h2>
+      <p class="sub">Enter the passcode to view sign-ups and download the Excel sheet.</p>
+      <input id="pass" type="password" placeholder="Passcode">
+      <button class="go" id="gateBtn">Unlock</button>
+      <div class="msg" id="gateMsg"></div>
+      <div class="linktiny"><a href="#">← Back to registration</a></div>
+    </div>
+
+    <div id="adminPanel" style="display:none">
+      <div class="kpi"><div class="box"><div class="n" id="kTotal">—</div><div class="l">Total sign-ups</div></div></div>
+      <div class="row">
+        <button class="btn x" id="xlsBtn">⬇ Download Excel (.xlsx)</button>
+        <button class="btn r" id="refBtn">↻ Refresh</button>
+      </div>
+      <div class="panel" style="padding:12px;overflow-x:auto"><div id="tableWrap">Loading…</div></div>
+      <div class="linktiny"><a href="#" id="logout">🔓 Log out</a> · <a href="#">← Registration</a></div>
+    </div>
+  </div>
+
+  <div class="foot">Qom'a · Qatar Sustainability Week 2026 · in support of the 6th Arab Nurses &amp; Midwives Conference</div>
+</div>
+
+<script>
+const CFG={URL:"https://xmdkvxzflbbdnkwsggjm.supabase.co",ANON:"sb_publishable_5UXQ_sYU5KOnRob11-ic1g_VtjUhXP8"};
+const TEAM_PASS='qoma2026@';
+const $=id=>document.getElementById(id);
+function RPC(fn,body){return fetch(CFG.URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:{apikey:CFG.ANON,Authorization:'Bearer '+CFG.ANON,'Content-Type':'application/json'},body:JSON.stringify(body||{})}).then(r=>r.json());}
+function esc(s){return String(s==null?'':s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+/* ---------- routing ---------- */
+function route(){const team=location.hash.replace('#','').toLowerCase()==='team';
+  $('screen-form').style.display=team?'none':'block';
+  $('screen-team').style.display=team?'block':'none';}
+window.addEventListener('hashchange',route);route();
+
+/* ---------- register ---------- */
+$('go').onclick=()=>{
+  const msg=$('msg');msg.className='msg';
+  const v=id=>$(id).value.trim();
+  if(!v('first')||!v('pos')||!v('hospital')||!v('email')){msg.className='msg err';msg.textContent='Please fill the required fields (*).';return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))){msg.className='msg err';msg.textContent='Please enter a valid email · البريد غير صحيح';return;}
+  $('go').disabled=true;$('go').textContent='Submitting…';
+  RPC('register_qom3a',{p_name:v('first'),p_pos:v('pos'),p_hospital:v('hospital'),
+      p_mobile:v('mobile'),p_email:v('email')}).then(r=>{
+    $('go').disabled=false;$('go').textContent='Register · سجّل';
+    if(r&&r.status==='ok'){
+      $('formPanel').style.display='none';
+      $('donePanel').innerHTML='<div class="done"><div class="big">✅</div><h3>You are registered!</h3>'+
+        '<p>Thank you for joining Qom\'a · شكراً لمشاركتك</p>'+
+        '<div class="idbox">Your number: '+String(r.id)+'</div>'+
+        '<p style="margin-top:14px">See you at Mathaf — Sat–Thu, 9 AM–5 PM.</p></div>';
+      window.scrollTo({top:0,behavior:'smooth'});
+    }else if(r&&r.status==='duplicate'){msg.className='msg err';msg.textContent=(r.msg||'You are already registered.');}
+    else{msg.className='msg err';msg.textContent=(r&&r.msg)?r.msg:'Could not register — please try again.';}
+  }).catch(()=>{$('go').disabled=false;$('go').textContent='Register · سجّل';msg.className='msg err';msg.textContent='Network error — please try again.';});
+};
+
+/* ---------- team / export ---------- */
+let ROWS=[];
+function unlock(){const c=$('pass').value.replace(/\s/g,'').toLowerCase();
+  if(c===TEAM_PASS){$('gatePanel').style.display='none';$('adminPanel').style.display='block';loadRows();}
+  else{$('gateMsg').className='msg err';$('gateMsg').textContent='Wrong passcode.';}}
+$('gateBtn').onclick=unlock;
+$('pass').addEventListener('keydown',e=>{if(e.key==='Enter')unlock();});
+$('logout').onclick=e=>{e.preventDefault();$('adminPanel').style.display='none';$('gatePanel').style.display='block';$('pass').value='';};
+$('refBtn').onclick=loadRows;
+
+function fmtDate(d){if(!d)return '';try{return new Date(d).toLocaleString('en-GB',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});}catch(_){return d;}}
+function loadRows(){$('tableWrap').innerHTML='Loading…';
+  RPC('qom3a_list',{}).then(rows=>{ROWS=Array.isArray(rows)?rows:[];
+    $('kTotal').textContent=ROWS.length;
+    if(!ROWS.length){$('tableWrap').innerHTML='<div style="color:#8a7a63;padding:10px">No sign-ups yet.</div>';return;}
+    let h='<table><thead><tr><th>#</th><th>Name</th><th>Position</th><th>Hospital</th><th>Mobile</th><th>Email</th><th>Registered</th></tr></thead><tbody>';
+    ROWS.forEach(r=>{h+='<tr><td>'+esc(r.id)+'</td><td>'+esc(r.full_name)+'</td><td>'+esc(r.position)+'</td><td>'+esc(r.hospital)+'</td><td>'+esc(r.mobile)+'</td><td>'+esc(r.email)+'</td><td>'+esc(fmtDate(r.created_at))+'</td></tr>';});
+    h+='</tbody></table>';$('tableWrap').innerHTML=h;
+  }).catch(()=>{$('tableWrap').innerHTML='<div style="color:#c0392b;padding:10px">Could not load — check your internet and press Refresh.</div>';});}
+
+$('xlsBtn').onclick=()=>{
+  if(!ROWS.length){alert('No sign-ups to export yet.');return;}
+  const data=ROWS.map(r=>({
+    '#':r.id,
+    'Name':r.full_name||'',
+    'Position':r.position||'','Hospital':r.hospital||'',
+    'Mobile':r.mobile||'','Email':r.email||'',
+    'Registered at':fmtDate(r.created_at)
+  }));
+  const ws=XLSX.utils.json_to_sheet(data);
+  ws['!cols']=[{wch:6},{wch:24},{wch:22},{wch:22},{wch:16},{wch:26},{wch:20}];
+  const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Qom3a sign-ups');
+  const d=new Date(),p=n=>String(n).padStart(2,'0');
+  XLSX.writeFile(wb,'Qom3a_signups_'+d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'.xlsx');
+};
+</script>
+</body></html>
